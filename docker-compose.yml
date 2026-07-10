@@ -1,0 +1,40 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: volt-circuit-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: voltcircuit
+      MYSQL_USER: voltcircuit
+      MYSQL_PASSWORD: voltcircuit
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpass"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  prestashop:
+    image: prestashop/prestashop:8.1-apache
+    container_name: volt-circuit-prestashop
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    environment:
+      DB_SERVER: mysql
+      DB_NAME: voltcircuit
+      DB_USER: voltcircuit
+      DB_PASSWD: voltcircuit
+      PS_INSTALL_AUTO: 0
+      PS_DEV_MODE: 0
+    volumes:
+      - prestashop_data:/var/www/html
+
+volumes:
+  mysql_data:
+  prestashop_data:
