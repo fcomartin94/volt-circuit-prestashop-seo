@@ -16,8 +16,7 @@ sitemaps, unoptimized images, and fix them with measurable before/after results.
 
 - PrestaShop 8.1 (Docker image `prestashop/prestashop:8.1-apache`)
 - MySQL 8.0 (Docker)
-- Docker Compose (no XAMPP — this project uses Docker for local environment, unlike
-  the earlier `brew-co-prestashop` project)
+- Docker Compose for the local environment
 
 ## Progress Log
 
