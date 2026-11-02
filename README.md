@@ -165,3 +165,7 @@ See `/screenshots`:
 - `product_example.png` — product page after fixes (custom meta tags, real image with
   alt text, in-stock combinations)
 - `lighthouse_before.png` / `lighthouse_after.png` — Lighthouse scores before and after
+
+## License
+
+Released under the [MIT License](LICENSE).
